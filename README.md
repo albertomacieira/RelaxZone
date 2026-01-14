@@ -25,6 +25,7 @@ relax-zone/
 
 - `npm run dev` – start the server with nodemon.
 - `npm start` – start the server in production mode.
+- Link - http://127.0.0.1:4000
 
 ## Environment
 
