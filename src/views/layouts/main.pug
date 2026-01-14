@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title= title
+    link(rel="stylesheet" href="/css/style.css")
+
+  body
+    header.site-header
+      .nav-inner
+        a.nav-brand(href="/" aria-label="Relax Zone - Home")
+          img.nav-logo(src="/img/logo.png" alt="Relax Zone")
+
+        nav.nav-links
+          a(href="/" data-nav-home) Home
+          a(href="/services" data-nav-services) Serviços
+
+          // visível só quando LOGADO
+          a(href="/profile" data-nav-profile hidden) Perfil
+          a(href="/admin" data-nav-admin hidden) Admin
+
+          // visível só quando NÃO logado
+          a(href="/login" data-nav-login) Login
+          a(href="/register" data-nav-register) Registar
+
+        .nav-actions
+          button.btn(type="button" data-logout hidden) Logout
+
+    main.page
+      block content
+
+    script(type="module" src="/js/auth.js")
+    block scripts
+
+
+

@@ -1,0 +1,32 @@
+extends ../../layouts/main
+include ./_nav.pug
+
+block content
+  .container
+    h1 Admin · Reservas
+    +_nav
+
+    hr
+
+    .card
+      .row
+        button.btn(type="button" data-admin-bookings-refresh) Atualizar
+      p.muted(data-admin-bookings-msg)
+
+      table.table
+        thead
+          tr
+            th ID
+            th User
+            th Serviço
+            th Início
+            th Fim
+            th Estado
+            th Ações
+        tbody(data-admin-bookings-tbody)
+
+block scripts
+  script(type="module" src="/js/admin.guard.js")
+  script(type="module" src="/js/admin.bookings.js")
+
+

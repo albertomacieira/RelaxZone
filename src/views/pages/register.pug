@@ -1,0 +1,32 @@
+extends ../layouts/auth
+
+block content
+  section.auth-center
+    .card.auth-card
+      h2 Registar
+      p.muted Cria a tua conta para reservar serviços e gerir o teu perfil.
+
+      form(data-register-form)
+        label(for="name") Nome
+        input#name(type="text" name="name" placeholder="O teu nome" required)
+
+        label(for="email") Email
+        input#email(type="email" name="email" placeholder="email@exemplo.pt" required)
+
+        label(for="phone") Telefone (opcional)
+        input#phone(type="text" name="phone" placeholder="9xx xxx xxx")
+
+        label(for="password") Password
+        input#password(type="password" name="password" placeholder="••••••••" required)
+
+        button.btn(type="submit") Criar conta
+        p.muted(data-register-msg)
+
+      p.muted
+        | Já tens conta?
+        a(href="/login")  Fazer login
+
+block scripts
+  script(type="module" src="/js/register.js")
+
+

@@ -1,0 +1,29 @@
+extends ../layouts/main
+
+block content
+  main.container
+    h1 Área do Cliente
+
+    .card
+      h2 Perfil
+      p(data-profile-name) Name:
+      p(data-profile-email) Email:
+
+    .card
+      h2 Minhas Reservas
+      p.muted(data-my-bookings-msg)
+      table.table
+        thead
+          tr
+            th ID
+            th Serviço
+            th Início
+            th Fim
+            th Estado
+            th Ações
+        tbody(data-my-bookings-tbody)
+
+block scripts
+  script(type="module" src="/js/profile.page.js")
+
+  

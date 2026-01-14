@@ -1,0 +1,26 @@
+extends ../layouts/main
+
+block content
+  main.container
+    h1 Serviços
+    p.muted Escolhe um serviço e faz a tua reserva.
+
+    p.muted(data-services-msg)
+    .grid(data-services-grid)
+
+    // Modal Reserva
+    .modal(data-booking-modal hidden)
+      .modal-card
+        h2(data-booking-title) Serviço
+        p.muted(data-booking-meta)
+
+        label(for="dt") Data e hora
+        input#dt(type="datetime-local" data-booking-datetime required)
+
+        .row
+          button.btn(type="button" data-booking-confirm) Confirmar
+          button.btn(type="button" data-booking-cancel) Cancelar
+
+block scripts
+  script(type="module" src="/js/services.page.js")
+

@@ -1,0 +1,25 @@
+extends ../../layouts/main
+
+block content
+  main.container
+    h1 Admin Dashboard
+    p.muted Gestão e controlo do sistema (utilizadores, serviços e reservas).
+
+    .card
+      h2 Atalhos
+      .row
+        a.btn(href="/admin/users") Gestão de Utilizadores
+        a.btn(href="/admin/services") Gestão de Serviços
+        a.btn(href="/admin/bookings") Gestão de Reservas
+
+    .card
+      h2 Ações rápidas
+      .row
+        a.btn(href="/services") Ver página pública de serviços
+        a.btn(href="/profile") Ir para Perfil
+      .row
+        button.btn.btn-danger(type="button" data-logout) Logout
+
+block scripts
+  script(type="module" src="/js/admin.guard.js")
+

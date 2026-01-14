@@ -1,0 +1,42 @@
+extends ../../layouts/main
+include ./_nav.pug
+
+block content
+  .container
+    h1 Admin · Utilizadores
+    +_nav
+
+    hr
+
+    .card
+      .row
+        input(type="text" placeholder="Pesquisar (nome/email)" data-admin-users-q)
+        select(data-admin-users-role)
+          option(value="") Todos os roles
+          option(value="ADMIN") ADMIN
+          option(value="CLIENT") CLIENT
+        select(data-admin-users-active)
+          option(value="") Ativos e inativos
+          option(value="1") Só ativos
+          option(value="0") Só inativos
+        button.btn(type="button" data-admin-users-refresh) Atualizar
+
+      .muted(data-admin-users-msg)
+      table.table
+        thead
+          tr
+            th ID
+            th Nome
+            th Email
+            th Role
+            th Ativo
+            th Ações
+        tbody(data-admin-users-tbody)
+
+block scripts
+  script(type="module" src="/js/admin.guard.js")
+  script(type="module" src="/js/admin.users.js")
+
+
+
+

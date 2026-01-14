@@ -1,0 +1,65 @@
+extends ../layouts/main
+
+block content
+  main.container
+    section.hero.hero-single
+      .hero-left
+        h1 Relax Zone
+        p.lead
+          | O teu espaço de bem-estar. Reserva massagens, tratamentos e momentos de relaxamento em segundos.
+
+        .hero-actions
+          a.btn(href="/services" data-require-auth) Ver Serviços
+          a.btn.btn-ghost(href="/login" data-home-login) Entrar
+          a.btn.btn-ghost(href="/register" data-home-register) Criar conta
+          a.btn(href="/profile" data-home-profile hidden) Ir para o Perfil
+          a.btn(href="/admin" data-home-admin hidden) Admin
+
+        p.small.muted
+          | Sem complicações: escolhe o serviço, define data/hora e confirma.
+
+    section.features#porque
+      h2 Porquê a Relax Zone?
+      .grid
+        .card
+          h3 Experiência Premium
+          p.muted Ambiente calmo, privacidade e conforto em cada sessão.
+        .card
+          h3 Gestão de Reservas
+          p.muted Consulta e cancela as tuas reservas no perfil.
+        .card
+          h3 Serviços Variados
+          p.muted Massagens, tratamentos e pacotes adaptados a ti.
+
+    section.cta
+      .card.cta-card
+        h2 Pronto para relaxar?
+        p.muted Vê os serviços disponíveis e marca já a tua sessão.
+        a.btn(href="/services" data-require-auth) Reservar agora
+
+    section.popular#popular
+      h2 Serviços Mais Reservados
+      p.muted Os favoritos dos nossos clientes esta semana.
+
+      .grid.popular-grid
+        .card.popular-card
+          h3 Massagem Relaxante
+          p.muted 60 min · ideal para aliviar stress
+          a.btn.btn-ghost(href="/services" data-require-auth) Ver detalhes
+
+        .card.popular-card
+          h3 Aromaterapia
+          p.muted 45 min · equilíbrio e bem-estar
+          a.btn.btn-ghost(href="/services" data-require-auth) Ver detalhes
+
+        .card.popular-card
+          h3 Tratamento Facial
+          p.muted 50 min · pele limpa e hidratada
+          a.btn.btn-ghost(href="/services" data-require-auth) Ver detalhes
+
+block scripts
+  // só para ajustar botões conforme login
+  script(type="module" src="/js/home.js")
+
+
+

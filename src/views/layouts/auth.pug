@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title= title
+    link(rel="stylesheet" href="/css/style.css")
+
+
+  body
+main.auth-shell
+  header.auth-top
+    a.auth-brand(href="/" aria-label="Relax Zone - Home")
+      img.nav-logo(src="/img/logo.png" alt="Relax Zone" height="34")
+
+    h1 Bem-vindo à Relax Zone
+    p.muted Acede à tua conta para gerir reservas e perfil.
+
+    block content
+
+    block scripts

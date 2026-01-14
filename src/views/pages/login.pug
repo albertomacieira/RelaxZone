@@ -1,0 +1,28 @@
+extends ../layouts/auth
+
+block content
+  section.auth-center
+    .card.auth-card
+      h2 Login
+      p.muted Entra com as tuas credenciais.
+
+      form(data-login-form)
+        label(for="email") Email
+        input#email(type="email" name="email" placeholder="email@exemplo.pt" required)
+
+        label(for="password") Password
+        input#password(type="password" name="password" placeholder="••••••••" required)
+
+        button.btn(type="submit") Entrar
+        p.muted(data-login-msg)
+
+      p.muted
+        | Ainda não tens conta?
+        a(href="/register")  Criar conta
+
+block scripts
+  script(type="module" src="/js/login.js")
+
+
+
+

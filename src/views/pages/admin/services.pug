@@ -1,0 +1,42 @@
+extends ../../layouts/main
+include ./_nav.pug
+
+block content
+  .container
+    h1 Admin · Serviços
+    +_nav
+
+    hr
+
+    .card
+      h2 Criar serviço
+      form(data-admin-service-create)
+        .row
+          input(type="text" placeholder="Nome" name="name" required)
+          input(type="number" placeholder="Duração (min)" name="duration_min" required min="1")
+          input(type="number" placeholder="Preço (cêntimos)" name="price_cents" required min="0")
+        .row
+          input(type="text" placeholder="Imagem URL (opcional)" name="image_url")
+          input(type="text" placeholder="Descrição (opcional)" name="description")
+        button.btn(type="submit") Criar
+
+      p.muted(data-admin-services-msg)
+
+    .card
+      h2 Lista de serviços
+      table.table
+        thead
+          tr
+            th ID
+            th Nome
+            th Duração
+            th Preço
+            th Ativo
+            th Ações
+        tbody(data-admin-services-tbody)
+
+block scripts
+  script(type="module" src="/js/admin.guard.js")
+  script(type="module" src="/js/admin.services.js")
+
+
