@@ -495,6 +495,29 @@ select option:checked {
   gap:14px;
 }
 
+.service-card{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  overflow:hidden;
+}
+
+.service-thumb{
+  width:100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.04);
+}
+
+.service-thumb img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
 .service-meta{ display:flex; gap:8px; margin-top:10px; }
 .service-actions{ margin-top:12px; display:flex; justify-content:flex-end; }
 
@@ -633,20 +656,14 @@ select option:checked {
   color:#fff;
 }
 
-.bullets{
-  margin: 10px 0 0;
-  padding-left: 18px;
-  list-style: disc;
-}
-.bullets li{
-  margin: 6px 0;
-}
-.bullets li::before{
-  content:none !important;
-}
-
 .popular-grid{
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.popular-card{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 @media (max-width: 900px){
@@ -664,6 +681,14 @@ select option:checked {
   backdrop-filter: blur(10px);
   background: rgba(10,14,24,0.55);
   border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.popular-card .service-meta{
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.popular-card .btn{
+  margin-top: 10px;
+  align-self: flex-start;
 }
 
 .nav-inner{
@@ -718,29 +743,6 @@ select option:checked {
   max-width: 1100px;
   margin: 0 auto;
   padding: 26px 18px;
-}
-
-.nav-brand{
-  display:flex;
-  align-items:center;
-  padding: 6px 8px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.nav-brand{
-  padding: 0 !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-}
-
-header nav a.nav-brand{
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
 }
 
 /* imagem do logo */
@@ -845,41 +847,6 @@ main.auth-shell{
 
 .auth-shell *{
   box-sizing: border-box;
-}
-
-/* ===== OVERRIDES só para Login/Register ===== */
-main.auth-shell{
-  padding-bottom: 0;          /* anula o main global */
-}
-
-.auth-shell{
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;     /* centro vertical */
-  align-items: center;         /* centro horizontal */
-  padding: 28px 16px;
-  gap: 14px;
-}
-
-.auth-top{
-  width: 100%;
-  max-width: 520px;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.auth-center{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.auth-card{
-  width: 100%;
-  max-width: 520px;            /* menos largo */
-  margin: 0 auto;
 }
 
 /* ===== Booking status colors (select) ===== */

@@ -65,6 +65,11 @@ function normalizePatch(body) {
 
 const listServices = async () => repo.listActive();
 
+const listPopular = async (limit) => {
+  const top = await repo.listPopular(limit);
+  return top;
+};
+
 const getService = async (serviceId) => {
   const id = Number(serviceId);
   if (!Number.isFinite(id)) throw new ApiError(400, 'Invalid serviceId');
@@ -103,6 +108,6 @@ const removeService = async (serviceId) => {
   await repo.softDelete(id);
 };
 
-module.exports = { listServices, getService, createService, updateService, removeService };
+module.exports = { listServices, listPopular, getService, createService, updateService, removeService };
 
 

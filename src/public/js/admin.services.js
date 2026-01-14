@@ -112,16 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       msg.textContent = "A criar...";
 
-      await apiRequest("/services", {
-        method: "POST",
-        data: {
-          name,
-          description: fd.get("description") || "",
-          duration_min,
-          price_cents,
-          image_url: fd.get("image_url") || null,
-        },
-      });
+      await apiRequest("/services", { method: "POST", data: fd });
 
       form.reset();
       toast.success("Serviço criado.", "Serviços");

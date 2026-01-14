@@ -41,21 +41,8 @@ block content
       h2 Serviços Mais Reservados
       p.muted Os favoritos dos nossos clientes esta semana.
 
-      .grid.popular-grid
-        .card.popular-card
-          h3 Massagem Relaxante
-          p.muted 60 min · ideal para aliviar stress
-          a.btn.btn-ghost(href="/services" data-require-auth) Ver detalhes
-
-        .card.popular-card
-          h3 Aromaterapia
-          p.muted 45 min · equilíbrio e bem-estar
-          a.btn.btn-ghost(href="/services" data-require-auth) Ver detalhes
-
-        .card.popular-card
-          h3 Tratamento Facial
-          p.muted 50 min · pele limpa e hidratada
-          a.btn.btn-ghost(href="/services" data-require-auth) Ver detalhes
+      p.muted(data-popular-msg)
+      .grid.popular-grid(data-popular-grid)
 
 block scripts
   // só para ajustar botões conforme login

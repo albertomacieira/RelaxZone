@@ -1,6 +1,10 @@
 import { apiRequest, hasAccessToken } from "./api.js";
 import { toast } from "./toast.js";
 
+function eurosFromCents(cents) {
+  return (Number(cents || 0) / 100).toFixed(2) + "€";
+}
+
 async function setupHeroButtons() {
   const btnLogin = document.querySelector("[data-home-login]");
   const btnRegister = document.querySelector("[data-home-register]");
@@ -58,6 +62,45 @@ function guardRestrictedLinks() {
 document.addEventListener("DOMContentLoaded", () => {
   setupHeroButtons();
   guardRestrictedLinks();
+  loadPopularServices();
 });
+
+async function loadPopularServices() {
+  const grid = document.querySelector("[data-popular-grid]");
+  const msg = document.querySelector("[data-popular-msg]");
+  if (!grid) return;
+
+  try {
+    msg.textContent = "A carregar...";
+    grid.innerHTML = "";
+
+    const services = await apiRequest("/services/popular", { params: { limit: 3 } });
+    if (!services.length) {
+      msg.textContent = "Ainda sem reservas registadas.";
+      return;
+    }
+
+    services.forEach((s) => {
+      const card = document.createElement("div");
+      card.className = "card popular-card";
+
+      card.innerHTML = `
+        <h3>${s.name ?? "Serviço"}</h3>
+        <p class="muted">${(s.description || "").trim() || "—"}</p>
+        <div class="service-meta">
+          <span class="badge">${Number(s.duration_min)} min</span>
+          <span class="badge">${eurosFromCents(s.price_cents)}</span>
+        </div>
+        <a class="btn btn-ghost" href="/services" data-require-auth>Ver detalhes</a>
+      `;
+
+      grid.appendChild(card);
+    });
+
+    msg.textContent = "";
+  } catch (err) {
+    msg.textContent = err?.message || "Não foi possível carregar os serviços populares.";
+  }
+}
 
 

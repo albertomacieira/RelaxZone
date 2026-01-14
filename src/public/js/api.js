@@ -67,14 +67,13 @@ export const apiRequest = async (endpoint, { method = "GET", data, params } = {}
   }
 
   const headers = {};
-  if (data !== undefined) headers["Content-Type"] = "application/json";
+  const isFormData = typeof FormData !== "undefined" && data instanceof FormData;
+  if (data !== undefined && !isFormData) headers["Content-Type"] = "application/json";
   if (accessToken) headers.Authorization = `Bearer ${accessToken}`;
 
-  const res = await fetch(url.toString(), {
-    method,
-    headers,
-    body: data !== undefined ? JSON.stringify(data) : undefined,
-  });
+  const body = data === undefined ? undefined : isFormData ? data : JSON.stringify(data);
+
+  const res = await fetch(url.toString(), { method, headers, body });
 
   // tenta refresh automático
   if (res.status === 401 && retry && refreshToken) {

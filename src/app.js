@@ -27,11 +27,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // PÁGINAS PÚBLICAS
-app.get("/", (req, res) => res.render("pages/home", { title: APP_NAME }));
+app.get("/", (req, res) => res.render("pages/login", { title: APP_NAME }));
 app.get("/login", (req, res) => res.render("pages/login", { title: `${APP_NAME} · Login` }));
+app.get("/home", (req, res) => res.render("pages/home", { title: `${APP_NAME} · Home` }));
 app.get("/register", (req, res) => res.render("pages/register", { title: `${APP_NAME} · Register` }));
 app.get("/profile", (req, res) => res.render("pages/profile", { title: `${APP_NAME} · Profile` }));
 app.get("/services", (req, res) => res.render("pages/services", { title: `${APP_NAME} · Services` }));
+
 
 // PÁGINAS ADMIN (3 páginas)
 app.get("/admin", (req, res) => res.render("pages/admin/index", { title: `${APP_NAME} · Admin Dashboard` }));

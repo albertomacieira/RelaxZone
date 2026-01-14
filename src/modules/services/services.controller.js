@@ -9,6 +9,19 @@ const listServices = async (req, res, next) => {
   }
 };
 
+const listPopular = async (req, res, next) => {
+  try {
+    const services = await servicesService.listPopular(req.query.limit);
+    // normaliza BigInt devolvido pelo driver
+    const safe = JSON.parse(
+      JSON.stringify(services, (_k, v) => (typeof v === "bigint" ? Number(v) : v))
+    );
+    res.json(safe);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getService = async (req, res, next) => {
   try {
     const service = await servicesService.getService(req.params.serviceId);
@@ -20,6 +33,9 @@ const getService = async (req, res, next) => {
 
 const createService = async (req, res, next) => {
   try {
+    if (req.file) {
+      req.body.image_url = `/uploads/services/${req.file.filename}`;
+    }
     const service = await servicesService.createService(req.body);
     res.status(201).json(service);
   } catch (error) {
@@ -29,6 +45,9 @@ const createService = async (req, res, next) => {
 
 const updateService = async (req, res, next) => {
   try {
+    if (req.file) {
+      req.body.image_url = `/uploads/services/${req.file.filename}`;
+    }
     const service = await servicesService.updateService(req.params.serviceId, req.body);
     res.json(service);
   } catch (error) {
@@ -45,4 +64,4 @@ const removeService = async (req, res, next) => {
   }
 };
 
-module.exports = { listServices, getService, createService, updateService, removeService };
+module.exports = { listServices, listPopular, getService, createService, updateService, removeService };

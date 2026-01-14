@@ -10,13 +10,13 @@ block content
 
     .card
       h2 Criar serviço
-      form(data-admin-service-create)
+      form(data-admin-service-create enctype="multipart/form-data")
         .row
           input(type="text" placeholder="Nome" name="name" required)
           input(type="number" placeholder="Duração (min)" name="duration_min" required min="1")
           input(type="number" placeholder="Preço (cêntimos)" name="price_cents" required min="0")
         .row
-          input(type="text" placeholder="Imagem URL (opcional)" name="image_url")
+          input(type="file" name="image_file" accept="image/*")
           input(type="text" placeholder="Descrição (opcional)" name="description")
         button.btn(type="submit") Criar
 

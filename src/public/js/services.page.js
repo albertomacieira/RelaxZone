@@ -52,6 +52,7 @@ function renderServiceCard(s) {
   div.className = "card service-card";
 
   div.innerHTML = `
+    ${s.image_url ? `<div class="service-thumb"><img src="${s.image_url}" alt="${s.name || "Serviço"}"></div>` : ""}
     <h3 class="service-title">${s.name ?? ""}</h3>
     <p class="muted">${(s.description ?? "").trim() || "—"}</p>
 

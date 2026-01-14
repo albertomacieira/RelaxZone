@@ -12,6 +12,31 @@ const listActive = async () => {
   return rows;
 };
 
+const listPopular = async (limit = 3) => {
+  const pool = getPool();
+  const top = await pool.query(
+    `SELECT 
+      CAST(s.id AS SIGNED) AS id,
+      s.name,
+      s.description,
+      CAST(s.duration_min AS SIGNED) AS duration_min,
+      CAST(s.price_cents AS SIGNED) AS price_cents,
+      s.image_url,
+      CAST(s.is_active AS SIGNED) AS is_active,
+      s.created_at,
+      CAST(COALESCE(COUNT(b.id), 0) AS SIGNED) AS bookings_count
+     FROM services s
+     LEFT JOIN bookings b
+       ON b.service_id = s.id AND b.status <> 'CANCELLED'
+     WHERE s.is_active = 1
+     GROUP BY s.id
+     ORDER BY bookings_count DESC, s.id ASC
+     LIMIT ?`,
+    [Number(limit) || 3]
+  );
+  return top;
+};
+
 const findById = async (serviceId) => {
   const pool = getPool();
   const rows = await pool.query(
@@ -65,6 +90,6 @@ const softDelete = async (serviceId) => {
   await pool.query(`UPDATE services SET is_active = 0 WHERE id = ?`, [serviceId]);
 };
 
-module.exports = { listActive, findById, create, update, softDelete };
+module.exports = { listActive, listPopular, findById, create, update, softDelete };
 
 
